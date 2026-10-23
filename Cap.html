@@ -116,6 +116,8 @@ input[type=text],input[type=number]{width:100%;padding:13px;border-radius:14px;b
 .th.td{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 35%,transparent)}
 .aj{display:block;font-style:normal;font-size:9px;font-weight:700;margin-top:2px;letter-spacing:.3px}
 .wdp button{width:40px;font-size:15px;font-weight:600}
+.cd.cp.sl2 span{background:var(--c);color:#fff;font-weight:700}.cd.off{opacity:.25;pointer-events:none}
+#cpick{z-index:12}#cpick .in{max-height:92%;display:flex;flex-direction:column}#cp-body{overflow:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 [data-edit]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .task-action{width:100%;padding:14px;border:1px solid var(--ln);border-radius:14px;background:var(--card);color:var(--tx);font:inherit;cursor:pointer;margin-top:10px}
@@ -146,7 +148,7 @@ input[type=text],input[type=number]{width:100%;padding:13px;border-radius:14px;b
 #geo-map{height:300px;border-radius:14px;overflow:hidden;margin-top:10px;color:#14161f;isolation:isolate}#geo-map .leaflet-control{font-size:12px}#geo-map .leaflet-control-attribution{font-size:10px}
 .daily-quote{padding:18px 18px 16px;margin:0 0 20px;border-left:3px solid var(--ac);background:linear-gradient(120deg,color-mix(in srgb,var(--ac) 10%,transparent),var(--card))}.daily-quote blockquote{margin:8px 0 12px;font-size:18px;line-height:1.5;font-weight:500;letter-spacing:-.2px}.daily-quote .quote-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12px;color:var(--mu)}.daily-quote a{color:var(--ac);text-decoration:none}.daily-quote .cap{margin:0;letter-spacing:.8px;text-transform:uppercase;font-size:10px}
 </style><meta name="theme-color" content="#4f46e5"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Cap"><meta name="apple-mobile-web-app-status-bar-style" content="default"></head><body>
-<div id="app"><main id="main"><section class="glass daily-quote" aria-label="Pensée pour garder le cap"><p class="cap">Pour garder le cap</p><blockquote>« Ce qui trouble les hommes, ce ne sont pas les choses, mais leurs opinions sur les choses. »</blockquote><div class="quote-meta"><span>Épictète · Citation</span><a href="https://fr.wikisource.org/wiki/Manuel_d’Épictète_(trad._Guyau)/Manuel" target="_blank" rel="noopener noreferrer" title="Manuel, V · traduction Jean-Marie Guyau, 1875">Source ↗</a></div></section><h1>Aujourd’hui</h1><p class="sub">vendredi 23 octobre</p>
+<div id="app"><main id="main"><section class="glass daily-quote" aria-label="Pensée pour garder le cap"><p class="cap">Pour garder le cap</p><blockquote>« Tu dépendras moins de demain, si tu t’assures bien d’aujourd’hui. »</blockquote><div class="quote-meta"><span>Sénèque · Citation</span><a href="https://fr.wikisource.org/wiki/Lettres_à_Lucilius/Lettre_1" target="_blank" rel="noopener noreferrer" title="Lettre 1 · traduction Joseph Baillard, 1914">Source ↗</a></div></section><h1>Aujourd’hui</h1><p class="sub">vendredi 23 octobre</p>
  <div class="glass hero"><svg class="ring" viewBox="0 0 84 84"><circle class="bg" cx="42" cy="42" r="36"></circle><circle class="fg" cx="42" cy="42" r="36" stroke-dasharray="226.1946710584651" stroke-dashoffset="0" transform="rotate(-90 42 42)"></circle></svg>
  <div><b>0 action sur 0</b><span>Aucune tâche prévue aujourd’hui</span></div></div>
  
@@ -155,9 +157,10 @@ input[type=text],input[type=number]{width:100%;padding:13px;border-radius:14px;b
 <div id="toast" class="glass"><span id="tmsg"></span><button id="tundo">Annuler</button></div>
 <nav class="glass" id="nav">
 <button data-t="today" class="on" aria-current="page"><span>◉</span>Aujourd’hui</button>
-<button data-t="soon"><span>◷</span>À venir</button>
-<button data-t="tasks"><span>☰</span>Mes tâches</button>
-<button data-t="prog"><span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:1px 0"><rect x="5" y="3" width="15" height="18" rx="2"></rect><path d="M8 3v18M3 7h3M3 12h3M3 17h3M11 8h6M11 12h6M11 16l1.5 1.5L16 14"></path></svg></span>Progression</button></nav>
+<button data-t="soon" class=""><span>◷</span>À venir</button>
+<button data-t="tasks" class=""><span>☰</span>Mes tâches</button>
+<button data-t="prog" class=""><span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:1px 0"><rect x="5" y="3" width="15" height="18" rx="2"></rect><path d="M8 3v18M3 7h3M3 12h3M3 17h3M11 8h6M11 12h6M11 16l1.5 1.5L16 14"></path></svg></span>Progression</button></nav>
+<div class="sheet" id="cpick"><div class="in"><h2>Choisis tes jours</h2><p class="cap" id="cp-cnt"></p><p class="cap">Remplir automatiquement un jour de la semaine :</p><div class="pick wdp" id="cp-wd"></div><div id="cp-body"></div><p class="cap" id="cp-det" style="margin:8px 0"></p><button class="go" id="cp-ok">Valider</button></div></div>
 <div class="sheet" id="sheet"><div class="in">
 <h2 id="fh">Nouvelle tâche</h2>
 <input type="text" id="fn" placeholder="Nom de la tâche">
@@ -186,7 +189,7 @@ const col=x=>x.k||PC[x.p];
 const sil=x=>`<span class="sil">${TH[x.th]||''}</span>`;
 const ptag=x=>`<span class="tag" style="background:${PC[x.p]};color:#fff">${PN[x.p]}</span>`;
 const DN=['dim','lun','mar','mer','jeu','ven','sam'];
-function schTxt(x){const q=x.sch;if(q&&q.m==='int')return q.n===1?'chaque jour':'tous les '+q.n+' jours';if(q&&q.m==='auto')return 'auto · '+q.k+'/sem.';return (x.days||[]).slice().sort((a,b)=>((a+6)%7)-((b+6)%7)).map(d=>DN[d]).join(' ');}
+function schTxt(x){const q=x.sch;if(q&&q.m==='int')return q.n===1?'chaque jour':'tous les '+q.n+' jours';if(q&&q.m==='dates'){const n=(x.dates||[]).length;return n+' date'+(n>1?'s':'');}if(q&&q.m==='auto')return 'auto · '+q.k+'/sem.';return (x.days||[]).slice().sort((a,b)=>((a+6)%7)-((b+6)%7)).map(d=>DN[d]).join(' ');}
 function sub(x){
  if(x.t==='habit')return `Habitude · ${x.wd}/${x.wt} cette semaine`+(x.ctx?` · ${x.ctx}`:'');
  if(x.t==='count')return `Objectif · ${x.c}/${x.g} réalisations`+(x.sch?` · ${schTxt(x)}`:'');
@@ -234,7 +237,7 @@ function today(){
  const todo=TD.filter(x=>!x.done).sort((a,b)=>a.p-b.p);
  const nx=todo[0],rest=TD.filter(x=>x!==nx).sort((a,b)=>a.done-b.done||a.p-b.p);
  const d=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
- return `${quoteCard()}<h1>Aujourd’hui</h1><p class="sub">${d}</p>
+ return `${urgentRem()}${quoteCard()}<h1>Aujourd’hui</h1><p class="sub">${d}</p>
  <div class="glass hero"><svg class="ring" viewBox="0 0 84 84"><circle class="bg" cx="42" cy="42" r="36"/><circle class="fg" cx="42" cy="42" r="36" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" transform="rotate(-90 42 42)"/></svg>
  <div><b>${dn} action${dn>1?'s':''} sur ${tot}</b><span>${nx?'Encore '+todo.length+' à faire':tot?'Tout est fait. Profite !':'Aucune tâche prévue aujourd’hui'}</span></div></div>
  ${nx?`<div class="lbl">Prochaine tâche prioritaire</div><div class="glass next row" style="margin-bottom:0;--c:${col(nx)}">${sil(nx)}<button class="chk" data-id="${nx.id}" style="border-color:${col(nx)}">${ck}</button><div class="t"><b>${nx.n}</b><small>${sub(nx)}</small></div>${ptag(nx)}</div>`:''}
@@ -289,9 +292,24 @@ const dd=d=>Math.round((D0(d)-D0(new Date()))/864e5);
 const same=(a,b)=>D0(a).getTime()===D0(b).getTime();
 const JL=['L','M','M','J','V','S','D'];
 function sched(x,d){if(x.t==='once')return x.dt!=null?same(d,new Date(x.dt)):(x.due||0)===dd(d);
- const q=x.sch;if(q&&q.m==='int'){const k=Math.round((D0(d)-q.s)/864e5);return k>=0&&k%q.n===0;}
+ const q=x.sch;if(q&&q.m==='dates')return (x.dates||[]).includes(D0(d).getTime());if(q&&q.m==='int'){const k=Math.round((D0(d)-q.s)/864e5);return k>=0&&k%q.n===0;}
  return (x.days||[1,2,3,4,5]).includes(d.getDay());}
 function dueToday(x){return sched(x,new Date())||(x.t==='once'&&x.dt!=null&&x.dt<D0(new Date()).getTime()&&!x.done);}
+
+function spread(k){k=Math.max(1,Math.min(7,k|0));const r=[];for(let i=0;i<k;i++)r.push((Math.floor(i*7/k)+1)%7);return r;}
+function genDates(days,n){const r=[],t=D0(new Date());for(let i=0;i<400&&r.length<n;i++){const d=new Date(t);d.setDate(t.getDate()+i);if(days.includes(d.getDay()))r.push(D0(d).getTime());}return r;}
+function nextDate(x){if(x.t==='once')return x.dt!=null?new Date(x.dt):null;const t=D0(new Date());for(let i=1;i<=730;i++){const d=new Date(t);d.setDate(t.getDate()+i);if(sched(x,d))return d;}return null;}
+function urgentRem(){const R=T.filter(x=>x.p===1&&!x.done&&!dueToday(x)).map(x=>({x,d:nextDate(x)})).filter(r=>r.d).sort((a,b)=>a.d-b.d);if(!R.length)return '';
+ return `<div class="lbl" style="color:var(--p1)">Rappels urgents</div>`+R.map(r=>{const k=dd(r.d);return `<div class="row glass" style="--c:${col(r.x)}">${sil(r.x)}${r.x.t==='once'?`<button class="chk" data-id="${r.x.id}" style="border-color:${col(r.x)}">${ck}</button>`:'<span style="font-size:22px">🔔</span>'}<div class="t"><b>${r.x.n}</b><small>Prévue ${r.d.toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'})} · ${k===1?'demain':'dans '+k+' jours'}</small></div>${ptag(r.x)}</div>`;}).join('');}
+function refreshWt(){const m=D0(new Date());m.setDate(m.getDate()-((m.getDay()+6)%7));T.forEach(x=>{if(x.t==='once'||!x.sch||(x.sch.m!=='dates'&&x.sch.m!=='int'))return;let n=0;for(let i=0;i<7;i++){const d=new Date(m);d.setDate(m.getDate()+i);if(sched(x,d))n++;}x.wt=Math.max(1,n);});}
+function applySched(x,a){
+ if(x.t==='once'){const v=$('#odate')&&$('#odate').value;x.dt=v?D0(new Date(v+'T00:00:00')).getTime():(x.dt!=null?x.dt:D0(new Date()).getTime());delete x.due;return true;}
+ if(x.t==='habit'){x.days=spread(a);x.wt=x.days.length;delete x.sch;delete x.dates;return true;}
+ x.g=a;
+ if(fmode==='days'){if(!fdates.length){alert('Choisis au moins un jour dans le calendrier.');return false;}x.dates=fdates.slice();x.sch={m:'dates'};x.days=[];x.wt=1;}
+ else if(fmode==='auto'){const k=Math.max(1,Math.min(7,+($('#fper')&&$('#fper').value)||3));x.days=spread(k);x.sch={m:'auto',k};x.wt=x.days.length;delete x.dates;}
+ else{const q=Math.max(1,Math.min(30,+($('#fint')&&$('#fint').value)||2));x.sch={m:'int',n:q,s:D0(new Date()).getTime()};x.days=[];x.wt=Math.ceil(7/q);delete x.dates;}
+ return true;}
 function ev(d){const n=dd(d),r=[];T.forEach(x=>{if(x.cd&&D0(d).getTime()<x.cd)return;if(!sched(x,d))return;let s='p';if(n===0)s=x.done?'d':'p';else if(n<0)s=x.t==='once'?'m':x.log?(x.log[dkey(d)]?'d':'m'):(Math.abs((x.id*7919+n*104729)%10)<8?'d':'m');r.push({x,s});});return r;}
 const dots=r=>r.slice(0,5).map(e=>`<i style='background:${e.s==='d'?col(e.x):'transparent'};border:1.5px solid ${col(e.x)};opacity:${e.s==='m'?.35:1}'></i>`).join('');
 const cell=d=>`<button class='cd ${dd(d)===0?'td':''} ${same(d,cs)?'sl':''}' data-d='${D0(d).getTime()}'><span>${d.getDate()}</span><div class='dots'>${dots(ev(d))}</div></button>`;
@@ -320,7 +338,7 @@ function calH(){document.querySelectorAll('[data-cv]').forEach(b=>b.onclick=()=>
  document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{const k=+b.dataset.nav;cr=new Date(cr);if(cv==='week')cr.setDate(cr.getDate()+7*k);else if(cv==='month')cr.setMonth(cr.getMonth()+k,1);else cr.setFullYear(cr.getFullYear()+k);render();});
  document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{cs=new Date(+b.dataset.d);render();});
  document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{cr=new Date(cr.getFullYear(),+b.dataset.m,1);cv='month';render();});}
-function render(){try{localStorage.setItem('cap-state-v1',JSON.stringify({T,H,day:dkey(new Date()),wk:wkey(new Date())}));}catch(e){} $('#main').innerHTML={today,soon,tasks,prog}[tab]();$('#fab').style.display=tab==='tasks'?'block':'none';
+function render(){refreshWt();try{localStorage.setItem('cap-state-v1',JSON.stringify({T,H,day:dkey(new Date()),wk:wkey(new Date())}));}catch(e){} $('#main').innerHTML={today,soon,tasks,prog}[tab]();$('#fab').style.display=tab==='tasks'?'block':'none';
  document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const x=T.find(y=>y.id==b.dataset.id);if(x)toggle(x);});
  bindTaskActions();bindBackup();calH();document.querySelectorAll('[data-sv]').forEach(b=>b.onclick=()=>{sv=+b.dataset.sv;render();});document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{ss=new Date(+b.dataset.s);render();});
  document.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{zm=Math.min(1.8,Math.max(.4,zm+.15*+b.dataset.z));render();});
@@ -467,32 +485,53 @@ $('#fth').onclick=e=>{const b=e.target.closest('button');if(b){fth=b.dataset.v;p
 $('#fk').onclick=e=>{const b=e.target.closest('button');if(b){fk=b.dataset.v;pk();}};
 function openS(x){loadGeoForm(x);ed=x;$('#fn').value=x?x.n:'';fth=x?x.th||'sport':'sport';fk=x?x.k||'':'';fp=x?String(x.p):'2';
  $('#fp').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===fp));
- $('#ft').style.display=$('#fx').style.display=x?'none':'';$('#fh').textContent=x?'Personnaliser la tâche':'Nouvelle tâche';$('#fgo').textContent=x?'Enregistrer':'Créer';pk();$('#sheet').classList.add('on');}
-let fmode='days',fdays=[1,3,5];
+ $('#ft').style.display=x?'none':'';
+ if(x){ft=x.t;const q=x.sch;fmode=q?(q.m==='auto'?'auto':q.m==='int'?'int':'days'):'days';fdates=x.dates?x.dates.slice():(x.t==='count'&&x.days&&x.days.length?genDates(x.days,Math.max(1,(x.g||10)-(x.c||0))):[]);}
+ else{ft='habit';fmode='days';fdates=[];$('#ft').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v==='habit'));}
+ fx();
+ if(x){if(x.t==='count'){$('#a').value=x.g;if(x.sch&&x.sch.m==='auto')$('#fper').value=x.sch.k;if(x.sch&&x.sch.m==='int')$('#fint').value=x.sch.n;fsum();}else if(x.t==='habit')$('#a').value=(x.days||[]).length||x.wt||3;else if(x.dt!=null)$('#odate').value=iso(x.dt);}
+ $('#fh').textContent=x?'Personnaliser la tâche':'Nouvelle tâche';$('#fgo').textContent=x?'Enregistrer':'Créer';pk();$('#sheet').classList.add('on');}
+let fmode='days',fdates=[],cpM=1,cpFocus=null;
+const fsum=()=>{const e=$('#fdsum');if(e){const g=+($('#a')&&$('#a').value)||10,n=fdates.length;e.textContent=n+' jour'+(n>1?'s':'')+' choisi'+(n>1?'s':'')+' pour '+g+' réalisation'+(g>1?'s':'');}};
 function fx(){const h=$('#fx');
  if(ft==='once'){h.innerHTML=`<p class="cap">Date</p><input type="date" id="odate" value="${iso(new Date())}">`;return;}
  if(ft==='habit'){h.innerHTML='<input type="number" id="a" min="1" max="7" value="3" placeholder="Fois par semaine">';return;}
  h.innerHTML=`<input type="number" id="a" min="1" value="10" placeholder="Nombre de réalisations"><p class="cap">Quand ?</p><div class="seg" id="fm"><button data-v="days">Jours choisis</button><button data-v="auto">Automatique</button><button data-v="int">Intervalle</button></div><div id="fmx"></div>`;
- $('#fm').onclick=e=>{const b=e.target.closest('button');if(b){fmode=b.dataset.v;fmx();}};fmx();}
+ $('#a').oninput=fsum;$('#fm').onclick=e=>{const b=e.target.closest('button');if(b){fmode=b.dataset.v;fmx();}};fmx();}
 function fmx(){$('#fm').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===fmode));const h=$('#fmx');
- if(fmode==='days'){h.innerHTML=`<div class="pick wdp" id="fdp">${['L','M','M','J','V','S','D'].map((l,i)=>`<button data-d="${(i+1)%7}" class="${fdays.includes((i+1)%7)?'on':''}">${l}</button>`).join('')}</div>`;$('#fdp').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=+b.dataset.d;fdays=fdays.includes(d)?fdays.filter(y=>y!==d):fdays.concat(d);fmx();};}
+ if(fmode==='days'){h.innerHTML=`<button class="go" id="cp-open" style="background:var(--ln);color:var(--tx)">📅 Ouvrir le calendrier</button><p class="cap" id="fdsum" style="margin-top:6px"></p>`;$('#cp-open').onclick=openCal;fsum();}
  else if(fmode==='auto')h.innerHTML='<input type="number" id="fper" min="1" max="7" value="3" placeholder="Fois par semaine"><p class="cap">Les séances sont réparties automatiquement sur la semaine.</p>';
  else h.innerHTML='<input type="number" id="fint" min="1" max="30" value="2" placeholder="Tous les combien de jours ?"><p class="cap">Une séance tous les N jours, à partir d’aujourd’hui (1 = chaque jour, 2 = un jour sur deux).</p>';}
+function openCal(){const g=+($('#a')&&$('#a').value)||10;cpM=Math.max(1,Math.min(12,Math.ceil(g/12)));const d0=new Date();fdates.forEach(t=>{const d=new Date(t),m=(d.getFullYear()-d0.getFullYear())*12+d.getMonth()-d0.getMonth()+1;if(m>cpM)cpM=Math.min(24,m);});cpFocus=null;
+ $('#cp-wd').innerHTML=['L','M','M','J','V','S','D'].map((l,i)=>`<button data-d="${(i+1)%7}">${l}</button>`).join('');$('#cpick').classList.add('on');cpRender();}
+function cpRender(){const g=+($('#a')&&$('#a').value)||10,d0=D0(new Date()),sel=new Set(fdates),cc=(ed&&ed.k)||fk||PC[fp],body=$('#cp-body'),st=body.scrollTop;let h='';
+ const others=d=>T.filter(x=>x!==ed&&(!x.cd||D0(d).getTime()>=x.cd)&&sched(x,d));
+ for(let m=0;m<cpM;m++){const f=new Date(d0.getFullYear(),d0.getMonth()+m,1),n=new Date(f.getFullYear(),f.getMonth()+1,0).getDate(),off=(f.getDay()+6)%7;
+  h+=`<div class="lbl" style="text-transform:capitalize">${f.toLocaleDateString('fr-FR',{month:'long',year:'numeric'})}</div><div class="cg">${JL.map(l=>`<div class="wl">${l}</div>`).join('')}${'<div></div>'.repeat(off)}`;
+  for(let i=1;i<=n;i++){const d=new Date(f.getFullYear(),f.getMonth(),i),t=D0(d).getTime();
+   h+=`<button class="cd cp ${sel.has(t)?'sl2':''} ${t<d0.getTime()?'off':''} ${t===cpFocus?'sl':''}" data-t="${t}" style="--c:${cc}"><span>${i}</span><div class="dots">${others(d).slice(0,4).map(x=>`<i style="background:${col(x)}"></i>`).join('')}</div></button>`;}
+  h+='</div>';}
+ h+='<button class="go" id="cp-more" style="background:var(--ln);color:var(--tx);margin-top:10px">+ Mois suivant</button>';
+ body.innerHTML=h;body.scrollTop=st;
+ $('#cp-cnt').textContent=fdates.length+' / '+g+' jours choisis';
+ if(cpFocus){const o=others(new Date(cpFocus));$('#cp-det').innerHTML='<b>'+new Date(cpFocus).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+'</b> · '+(o.length?o.map(x=>`<span class="pill" style="--c:${col(x)};font-size:11px;padding:2px 7px;margin-left:4px">${x.n}</span>`).join(''):'aucune autre tâche');}else $('#cp-det').textContent='Touche un jour pour le choisir et voir les tâches déjà prévues.';}
+$('#cp-body').onclick=e=>{if(e.target.closest('#cp-more')){cpM=Math.min(24,cpM+1);cpRender();return;}const b=e.target.closest('.cp');if(!b)return;const t=+b.dataset.t;fdates=fdates.includes(t)?fdates.filter(y=>y!==t):fdates.concat(t).sort((a,b)=>a-b);cpFocus=t;cpRender();};
+$('#cp-wd').onclick=e=>{const b=e.target.closest('button');if(!b)return;const wd=+b.dataset.d,g=+($('#a')&&$('#a').value)||10,s2=new Set(fdates),list=[],d0=D0(new Date()),end=new Date(d0.getFullYear(),d0.getMonth()+cpM,0);
+ for(let d=new Date(d0);d<=end;d.setDate(d.getDate()+1))if(d.getDay()===wd)list.push(D0(d).getTime());
+ if(list.every(t=>s2.has(t)))list.forEach(t=>s2.delete(t));else for(const t of list){if(s2.size>=g)break;s2.add(t);}
+ fdates=[...s2].sort((a,b)=>a-b);cpRender();};
+$('#cp-ok').onclick=()=>{$('#cpick').classList.remove('on');fsum();};
+$('#cpick').onclick=e=>{if(e.target.id==='cpick'){$('#cpick').classList.remove('on');fsum();}};
 function seg(id,cb){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;$(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));cb(b.dataset.v);};}
 seg('#ft',v=>{ft=v;fx();});seg('#fp',v=>{fp=v;pk();});fx();
 $('#fab').onclick=()=>openS(null);
 $('#sheet').onclick=e=>{if(e.target.id==='sheet')e.target.classList.remove('on');};
 $('#fgo').onclick=()=>{const n=$('#fn').value.trim();if(!n)return;const a=+($('#a')&&$('#a').value)||1;
  const geo=readGeoForm();if(geo===false)return;
- if(ed){ed.geo=geo;geoVisits.delete(ed.id);geoNext.delete(ed.id);ed.n=n;ed.p=+fp;ed.th=fth;ed.k=fk;$('#sheet').classList.remove('on');render();syncAutoGeo();return;}
- const spread=k=>{k=Math.max(1,Math.min(7,k|0));const r=[];for(let i=0;i<k;i++)r.push((Math.floor(i*7/k)+1)%7);return r;};
+ if(ed){ed.geo=geo;geoVisits.delete(ed.id);geoNext.delete(ed.id);ed.n=n;ed.p=+fp;ed.th=fth;ed.k=fk;if(!applySched(ed,a))return;$('#sheet').classList.remove('on');render();syncAutoGeo();return;}
  const x={id:0,n,t:ft,p:+fp,done:false,th:fth,k:fk,cd:D0(new Date()).getTime(),log:{}};
- if(ft==='once'){const v=$('#odate')&&$('#odate').value;x.dt=v?D0(new Date(v+'T00:00:00')).getTime():D0(new Date()).getTime();}
- else if(ft==='habit'){x.days=spread(a);x.wd=0;x.wt=x.days.length;}
- else{x.c=0;x.g=a;x.wd=0;
-  if(fmode==='days'){if(!fdays.length){alert('Choisis au moins un jour.');return;}x.days=fdays.slice();x.sch={m:'days'};x.wt=x.days.length;}
-  else if(fmode==='auto'){const k=+($('#fper')&&$('#fper').value)||3;x.days=spread(k);x.sch={m:'auto',k:Math.max(1,Math.min(7,k|0))};x.wt=x.days.length;}
-  else{const q=Math.max(1,Math.min(30,+($('#fint')&&$('#fint').value)||2));x.sch={m:'int',n:q,s:D0(new Date()).getTime()};x.days=[];x.wt=Math.ceil(7/q);}}
+ if(ft==='count'){x.c=0;x.wd=0;}if(ft==='habit')x.wd=0;
+ if(!applySched(x,a))return;
  x.id=id++;
  x.geo=geo;T.push(x);$('#sheet').classList.remove('on');fx();render();syncAutoGeo();};
 // Geolocation is requested only by the user's explicit buttons.
