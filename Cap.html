@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cap</title>
+<title>Aujourd’hui — Cap</title>
 <style>
 :root{--bg:#eef0f6;--card:rgba(255,255,255,.72);--tx:#14161f;--mu:#6b7080;--ac:#4f46e5;--ln:rgba(0,0,0,.08);--p1:#ef4444;--p2:#f59e0b;--p3:#3b82f6;--ok:#22c55e;--c:var(--ac);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0d14;--card:rgba(40,42,58,.62);--tx:#f2f3f8;--mu:#9a9fb2;--ac:#8b85ff;--ln:rgba(255,255,255,.1);color-scheme:dark}}
@@ -116,6 +115,7 @@ input[type=text],input[type=number]{width:100%;padding:13px;border-radius:14px;b
 .tc.e.tdc{background:color-mix(in srgb,var(--ac) 10%,transparent);border-color:var(--ac)}
 .th.td{box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 35%,transparent)}
 .aj{display:block;font-style:normal;font-size:9px;font-weight:700;margin-top:2px;letter-spacing:.3px}
+.wdp button{width:40px;font-size:15px;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 [data-edit]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .task-action{width:100%;padding:14px;border:1px solid var(--ln);border-radius:14px;background:var(--card);color:var(--tx);font:inherit;cursor:pointer;margin-top:10px}
@@ -146,35 +146,37 @@ input[type=text],input[type=number]{width:100%;padding:13px;border-radius:14px;b
 #geo-map{height:300px;border-radius:14px;overflow:hidden;margin-top:10px;color:#14161f;isolation:isolate}#geo-map .leaflet-control{font-size:12px}#geo-map .leaflet-control-attribution{font-size:10px}
 .daily-quote{padding:18px 18px 16px;margin:0 0 20px;border-left:3px solid var(--ac);background:linear-gradient(120deg,color-mix(in srgb,var(--ac) 10%,transparent),var(--card))}.daily-quote blockquote{margin:8px 0 12px;font-size:18px;line-height:1.5;font-weight:500;letter-spacing:-.2px}.daily-quote .quote-meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:12px;color:var(--mu)}.daily-quote a{color:var(--ac);text-decoration:none}.daily-quote .cap{margin:0;letter-spacing:.8px;text-transform:uppercase;font-size:10px}
 </style><meta name="theme-color" content="#4f46e5"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Cap"><meta name="apple-mobile-web-app-status-bar-style" content="default"></head><body>
-<div id="app"><main id="main"></main>
-<button class="fab" id="fab" aria-label="Ajouter">+</button>
+<div id="app"><main id="main"><section class="glass daily-quote" aria-label="Pensée pour garder le cap"><p class="cap">Pour garder le cap</p><blockquote>« Ce qui trouble les hommes, ce ne sont pas les choses, mais leurs opinions sur les choses. »</blockquote><div class="quote-meta"><span>Épictète · Citation</span><a href="https://fr.wikisource.org/wiki/Manuel_d’Épictète_(trad._Guyau)/Manuel" target="_blank" rel="noopener noreferrer" title="Manuel, V · traduction Jean-Marie Guyau, 1875">Source ↗</a></div></section><h1>Aujourd’hui</h1><p class="sub">vendredi 23 octobre</p>
+ <div class="glass hero"><svg class="ring" viewBox="0 0 84 84"><circle class="bg" cx="42" cy="42" r="36"></circle><circle class="fg" cx="42" cy="42" r="36" stroke-dasharray="226.1946710584651" stroke-dashoffset="0" transform="rotate(-90 42 42)"></circle></svg>
+ <div><b>0 action sur 0</b><span>Aucune tâche prévue aujourd’hui</span></div></div>
+ 
+ <div class="lbl">Les autres tâches du jour</div><div class="empty">Rien d’autre aujourd’hui.</div></main>
+<button class="fab" id="fab" aria-label="Ajouter" style="display: none;">+</button>
 <div id="toast" class="glass"><span id="tmsg"></span><button id="tundo">Annuler</button></div>
 <nav class="glass" id="nav">
-<button data-t="today" class="on"><span>◉</span>Aujourd’hui</button>
+<button data-t="today" class="on" aria-current="page"><span>◉</span>Aujourd’hui</button>
 <button data-t="soon"><span>◷</span>À venir</button>
 <button data-t="tasks"><span>☰</span>Mes tâches</button>
-<button data-t="prog"><span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:1px 0"><rect x="5" y="3" width="15" height="18" rx="2"/><path d="M8 3v18M3 7h3M3 12h3M3 17h3M11 8h6M11 12h6M11 16l1.5 1.5L16 14"/></svg></span>Progression</button></nav>
+<button data-t="prog"><span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:1px 0"><rect x="5" y="3" width="15" height="18" rx="2"></rect><path d="M8 3v18M3 7h3M3 12h3M3 17h3M11 8h6M11 12h6M11 16l1.5 1.5L16 14"></path></svg></span>Progression</button></nav>
 <div class="sheet" id="sheet"><div class="in">
 <h2 id="fh">Nouvelle tâche</h2>
 <input type="text" id="fn" placeholder="Nom de la tâche">
 <div class="seg" id="ft"><button data-v="habit" class="on">Habitude</button><button data-v="once">Une fois</button><button data-v="count">X fois</button></div>
-<div id="fx"></div>
+<div id="fx"><input type="number" id="a" min="1" max="7" value="3" placeholder="Fois par semaine"></div>
 <div class="seg" id="fp"><button data-v="1">Urgent</button><button data-v="2" class="on">Important</button><button data-v="3">Obligatoire</button></div>
-<p class="cap">Silhouette du thème</p><div class="pick" id="fth"></div><p class="cap">Couleur (par défaut : celle de la priorité)</p><div class="pick cols" id="fk"></div><fieldset class="geo-form"><legend>Validation par lieu</legend><label><input type="checkbox" id="geo-enabled"> Valider automatiquement sur place</label><div id="geo-fields" hidden><label>Nom du lieu<input type="text" id="geo-name" placeholder="Mon Basic-Fit"></label><button type="button" class="task-action" id="geo-map-open">Choisir sur la carte</button><div id="geo-map-area" hidden><p class="cap">Déplace et zoome la carte, puis clique sur ton lieu. Le cercle représente le rayon de validation.</p><div id="geo-map" aria-label="Carte de sélection du lieu"></div><p class="cap" id="geo-map-status" role="status"></p></div><button type="button" class="task-action" id="geo-here">Utiliser ma position actuelle</button><p class="cap" id="geo-location-message" role="status"></p><label>Latitude<input type="number" id="geo-lat" step="any" min="-90" max="90" placeholder="48.8566"></label><label>Longitude<input type="number" id="geo-lon" step="any" min="-180" max="180" placeholder="2.3522"></label><label>Rayon autour du lieu (mètres)<input type="number" id="geo-radius" min="30" max="5000" value="150"></label><label>Durée sur place / intervalle des relevés (minutes)<input type="number" id="geo-minutes" min="1" max="1440" value="30"></label><p class="cap">Choisis ton lieu sur la carte, utilise ta position ou saisis ses coordonnées. Chaque tâche utilise sa propre durée : 10 minutes = un relevé toutes les 10 minutes, 30 minutes = toutes les 30 minutes. Deux relevés dans la zone, séparés de cette durée, valident la tâche après ton autorisation de localisation. La durée est estimée entre les relevés dans la zone : une sortie entre deux relevés peut passer inaperçue. Le navigateur doit rester ouvert ; les vérifications en arrière-plan ne sont pas garanties.</p></div><p class="cap" id="geo-error" role="alert"></p></fieldset><button class="go" id="fgo">Créer</button></div></div></div>
-<dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">Supprimer cette tâche ?</h2><p id="delete-name"></p><button class="task-action" id="delete-confirm">Supprimer</button><button class="task-action" id="delete-cancel" autofocus>Retour</button></dialog>
+<p class="cap">Silhouette du thème</p><div class="pick" id="fth"></div><p class="cap">Couleur (par défaut : celle de la priorité)</p><div class="pick cols" id="fk"></div><fieldset class="geo-form"><legend>Validation par lieu</legend><label><input type="checkbox" id="geo-enabled"> Valider automatiquement sur place</label><div id="geo-fields" hidden=""><label>Nom du lieu<input type="text" id="geo-name" placeholder="Mon Basic-Fit"></label><button type="button" class="task-action" id="geo-map-open">Choisir sur la carte</button><div id="geo-map-area" hidden=""><p class="cap">Déplace et zoome la carte, puis clique sur ton lieu. Le cercle représente le rayon de validation.</p><div id="geo-map" aria-label="Carte de sélection du lieu"></div><p class="cap" id="geo-map-status" role="status"></p></div><button type="button" class="task-action" id="geo-here">Utiliser ma position actuelle</button><p class="cap" id="geo-location-message" role="status"></p><label>Latitude<input type="number" id="geo-lat" step="any" min="-90" max="90" placeholder="48.8566"></label><label>Longitude<input type="number" id="geo-lon" step="any" min="-180" max="180" placeholder="2.3522"></label><label>Rayon autour du lieu (mètres)<input type="number" id="geo-radius" min="30" max="5000" value="150"></label><label>Durée sur place / intervalle des relevés (minutes)<input type="number" id="geo-minutes" min="1" max="1440" value="30"></label><p class="cap">Choisis ton lieu sur la carte, utilise ta position ou saisis ses coordonnées. Chaque tâche utilise sa propre durée : 10 minutes = un relevé toutes les 10 minutes, 30 minutes = toutes les 30 minutes. Deux relevés dans la zone, séparés de cette durée, valident la tâche après ton autorisation de localisation. La durée est estimée entre les relevés dans la zone : une sortie entre deux relevés peut passer inaperçue. Le navigateur doit rester ouvert ; les vérifications en arrière-plan ne sont pas garanties.</p></div><p class="cap" id="geo-error" role="alert"></p></fieldset><button class="go" id="fgo">Créer</button></div></div></div>
+<dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">Supprimer cette tâche ?</h2><p id="delete-name"></p><button class="task-action" id="delete-confirm">Supprimer</button><button class="task-action" id="delete-cancel" autofocus="">Retour</button></dialog>
 <script>
 const PN={1:'Urgent',2:'Important',3:'Obligatoire'},PC={1:'var(--p1)',2:'var(--p2)',3:'var(--p3)'};
 const pages=['today','soon','tasks','prog'];
 const pageFromUrl=()=>pages.includes(location.hash.slice(1))?location.hash.slice(1):'today';
 let id=10,tab=pageFromUrl(),last=null;
-let T=[
-{id:1,n:'Lire 20 minutes',t:'habit',p:2,th:'livre',days:[1,2,3,4,5],done:false,wd:2,wt:5,ctx:'Après le petit-déjeuner'},
-{id:2,n:'Envoyer le dossier de bourse',t:'once',p:1,th:'admin',due:2,done:false},
-{id:3,n:'Séances de sport',t:'count',p:2,th:'sport',days:[1,3,5],done:false,c:7,g:12,wd:2,wt:3},
-{id:4,n:'Réviser les cours de maths',t:'habit',p:3,th:'maths',days:[1,2,3,4,6],done:false,wd:3,wt:5,ctx:'Après le déjeuner'},
-{id:5,n:'Appeler le fournisseur',t:'once',p:3,th:'appel',due:0,done:true}];
+let T=[];
 let H=[];
-try{const saved=JSON.parse(localStorage.getItem('cap-state-v1'));if(saved&&Array.isArray(saved.T)&&Array.isArray(saved.H)){T=saved.T;H=saved.H;id=Math.max(10,...T.map(x=>x.id+1));}}catch(e){}
+function dkey(d){const y=new Date(d);return y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();}
+function wkey(d){const y=new Date(d);y.setDate(y.getDate()-((y.getDay()+6)%7));return dkey(y);}
+const iso=d=>{const y=new Date(d);return y.getFullYear()+'-'+String(y.getMonth()+1).padStart(2,'0')+'-'+String(y.getDate()).padStart(2,'0');};
+try{const saved=JSON.parse(localStorage.getItem('cap-state-v1'));if(saved&&Array.isArray(saved.T)&&Array.isArray(saved.H)){T=saved.T;H=saved.H;id=Math.max(10,...T.map(x=>x.id+1));if(saved.day!==dkey(new Date())){const nw=saved.wk!==wkey(new Date());T.forEach(x=>{x.done=false;if(nw)x.wd=0;});}}}catch(e){}
 
 const $=s=>document.querySelector(s);
 const ck='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
@@ -183,12 +185,15 @@ const CL=['','#8b5cf6','#10b981','#ec4899','#06b6d4','#f97316'];
 const col=x=>x.k||PC[x.p];
 const sil=x=>`<span class="sil">${TH[x.th]||''}</span>`;
 const ptag=x=>`<span class="tag" style="background:${PC[x.p]};color:#fff">${PN[x.p]}</span>`;
+const DN=['dim','lun','mar','mer','jeu','ven','sam'];
+function schTxt(x){const q=x.sch;if(q&&q.m==='int')return q.n===1?'chaque jour':'tous les '+q.n+' jours';if(q&&q.m==='auto')return 'auto · '+q.k+'/sem.';return (x.days||[]).slice().sort((a,b)=>((a+6)%7)-((b+6)%7)).map(d=>DN[d]).join(' ');}
 function sub(x){
  if(x.t==='habit')return `Habitude · ${x.wd}/${x.wt} cette semaine`+(x.ctx?` · ${x.ctx}`:'');
- if(x.t==='count')return `Objectif · ${x.c}/${x.g} réalisations`;
+ if(x.t==='count')return `Objectif · ${x.c}/${x.g} réalisations`+(x.sch?` · ${schTxt(x)}`:'');
  return 'Une fois';}
 function toggle(x){
  const was=x.done;x.done=!was;const d=was?-1:1;
+ if(x.log){const k=dkey(new Date());if(!was)x.log[k]=1;else delete x.log[k];}
  if(x.t==='habit')x.wd+=d;
  if(x.t==='count'){x.c+=d;x.wd+=d;}
  try{navigator.vibrate&&navigator.vibrate(was?0:15)}catch(e){}
@@ -198,7 +203,7 @@ function toggle(x){
   if(x.t==='count'&&x.c>=x.g){msg='Objectif atteint : '+x.g+' séances faites !';burst();T=T.filter(y=>y!==x);H.push({n:x.n,t:'count',info:x.g+' réalisations'});}
   else if(x.wt&&x.wd===x.wt){msg='Objectif de la semaine : '+x.wt+'/'+x.wt+' pour « '+x.n+' »';burst();}
   else msg='« '+x.n+' » validée';
-  const left=T.filter(y=>!y.done).length;
+  const left=T.filter(y=>dueToday(y)&&!y.done).length;
   if(!left){msg='Journée terminée. Bravo !';burst();}
   if(x.t==='once'){T=T.filter(y=>y!==x);H.push({n:x.n,t:'once',info:'Terminée aujourd’hui'});x._h=true;}
   toast(msg,x);
@@ -224,14 +229,14 @@ const quoteEscape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>
 function quoteCard(){const q=launchQuote,isAdapt=q.kind==='Adaptation libre';return '<section class="glass daily-quote" aria-label="Pensée pour garder le cap"><p class="cap">Pour garder le cap</p><blockquote>'+((isAdapt||q.kind==='Phrase originale')?'':'« ')+quoteEscape(q.text)+((isAdapt||q.kind==='Phrase originale')?'':' »')+'</blockquote><div class="quote-meta"><span>'+quoteEscape(isAdapt?'D’après '+q.author:q.author)+' · '+quoteEscape(q.kind)+'</span>'+(q.source?'<a href="'+quoteEscape(q.source)+'" target="_blank" rel="noopener noreferrer" title="'+quoteEscape(q.reference)+'">Source ↗</a>':'')+'</div></section>';}
 
 function today(){
- const tot=T.length+0,dn=T.filter(x=>x.done).length;
+ const TD=T.filter(dueToday),tot=TD.length,dn=TD.filter(x=>x.done).length;
  const pct=tot?dn/tot:1,C=2*Math.PI*36;
- const todo=T.filter(x=>!x.done).sort((a,b)=>a.p-b.p);
- const nx=todo[0],rest=T.filter(x=>x!==nx).sort((a,b)=>a.done-b.done||a.p-b.p);
+ const todo=TD.filter(x=>!x.done).sort((a,b)=>a.p-b.p);
+ const nx=todo[0],rest=TD.filter(x=>x!==nx).sort((a,b)=>a.done-b.done||a.p-b.p);
  const d=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
  return `${quoteCard()}<h1>Aujourd’hui</h1><p class="sub">${d}</p>
  <div class="glass hero"><svg class="ring" viewBox="0 0 84 84"><circle class="bg" cx="42" cy="42" r="36"/><circle class="fg" cx="42" cy="42" r="36" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}" transform="rotate(-90 42 42)"/></svg>
- <div><b>${dn} action${dn>1?'s':''} sur ${tot}</b><span>${nx?'Encore '+todo.length+' à faire':'Tout est fait. Profite !'}</span></div></div>
+ <div><b>${dn} action${dn>1?'s':''} sur ${tot}</b><span>${nx?'Encore '+todo.length+' à faire':tot?'Tout est fait. Profite !':'Aucune tâche prévue aujourd’hui'}</span></div></div>
  ${nx?`<div class="lbl">Prochaine tâche prioritaire</div><div class="glass next row" style="margin-bottom:0;--c:${col(nx)}">${sil(nx)}<button class="chk" data-id="${nx.id}" style="border-color:${col(nx)}">${ck}</button><div class="t"><b>${nx.n}</b><small>${sub(nx)}</small></div>${ptag(nx)}</div>`:''}
  <div class="lbl">Les autres tâches du jour</div>${rest.map(rowH).join('')||'<div class="empty">Rien d’autre aujourd’hui.</div>'}`;}
 function tasks(){
@@ -241,7 +246,15 @@ function tasks(){
  [1,2,3].forEach(p=>{const l=T.filter(x=>x.p===p);
   h+=`<div class="lbl priority-zone" data-priority="${p}" style="color:${PC[p]}">${p} — ${PN[p]}</div>`+l.map(x=>`<div class="row glass ${reorderMode?'reordering':''}" data-edit="${x.id}" style="--c:${col(x)};cursor:pointer">${sil(x)}<div class="t"><b>${x.n}</b><small>${sub(x)}</small></div><span class="tag">${x.t==='habit'?'Habitude':x.t==='once'?'Une fois':'X fois'}</span></div>`).join('');});
  if(H.length)h+='<div class="lbl">Historique</div>'+H.map(x=>`<div class="row glass hist"><div class="t"><b>${x.n}</b><small>${x.info}</small></div><span>✓</span></div>`).join('');
+ if(!T.length)h+='<div class="empty">Aucune tâche pour l’instant. Touche + pour créer la première.</div>';
+ h+=`<div class="lbl">Sauvegarde</div><div class="glass row" style="display:block"><b style="font-weight:600">Mes données</b><small style="display:block;color:var(--mu);margin:4px 0 10px">Garde une copie de tes tâches ou transfère-les sur un autre appareil.</small><div class="seg" style="margin:0"><button id="bk-ex">Exporter</button><button id="bk-im">Importer</button></div><input type="file" id="bk-file" accept="application/json,.json" hidden><small id="bk-msg" style="display:block;color:var(--mu);margin-top:8px"></small></div>`;
  return h;}
+function bindBackup(){const ex=$('#bk-ex');if(!ex)return;const msg=t=>{$('#bk-msg').textContent=t;};
+ ex.onclick=()=>{try{const data=JSON.stringify({app:'cap',v:1,exportedAt:new Date().toISOString(),T,H},null,1),name='cap-sauvegarde-'+iso(new Date())+'.json',file=new File([data],name,{type:'application/json'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file]}).catch(()=>{});msg('Choisis où enregistrer le fichier.');return;}
+  const a=document.createElement('a');a.href=URL.createObjectURL(file);a.download=name;document.body.appendChild(a);a.click();a.remove();msg('Fichier exporté.');}catch(e){msg('Export impossible.');}};
+ $('#bk-im').onclick=()=>$('#bk-file').click();
+ $('#bk-file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||!Array.isArray(o.T)||!Array.isArray(o.H))throw 0;if(!confirm('Remplacer tes données actuelles par cette sauvegarde ?'))return;T=o.T;H=o.H;id=Math.max(10,...T.map(x=>x.id+1));render();}catch(err){msg('Fichier invalide.');}};r.readAsText(f);};}
 let sv=14;
 let ss=new Date(),zm=.75;
 function soon(){const days=[];for(let i=0;i<sv;i++){const d=new Date();d.setDate(d.getDate()+i);days.push({d,i,r:ev(d).filter(e=>e.s==='p').sort((a,b)=>a.x.p-b.x.p)});}
@@ -263,7 +276,7 @@ function soon(){const days=[];for(let i=0;i<sv;i++){const d=new Date();d.setDate
   body=`<div class='glass cal'><div class='ch' style='justify-content:center'><b>${f(days[0].d)} – ${f(days[sv-1].d)}</b></div><div class='sg'>${g}</div></div><div class='lbl'>${sd.d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</div>${sd.r.map(e=>`<div class='pill' style='--c:${col(e.x)};margin-bottom:6px'>${e.x.n}</div>`).join('')||`<div class='empty'>Rien de prévu ce jour-là.</div>`}`;}
  return `<h1>À venir</h1><p class='sub'>Tes prochaines tâches planifiées</p><div class='seg'>${[7,14,30].map(n=>`<button data-sv='${n}' class='${sv===n?'on':''}'>${n===7?'7 jours':n===14?'14 jours':'1 mois'}</button>`).join('')}</div><div class='glass hero'><div><b>${tot} tâche${tot>1?'s':''} à venir</b><span>${sv===30?'sur le mois à venir':sv===7?'encore à faire cette semaine':'sur les '+sv+' prochains jours'}</span></div></div>`+body;}
 function prog(){
- const tot=T.length,dn=T.filter(x=>x.done).length,pc=tot?Math.round(dn/tot*100):100;
+ const TD=T.filter(dueToday),tot=TD.length,dn=TD.filter(x=>x.done).length,pc=tot?Math.round(dn/tot*100):100;
  const b=(n,a,z,s,x)=>`<div class="glass row" style="display:block;--c:${x?col(x):'var(--ac)'}">${x?sil(x):''}<b style="font-weight:600">${n}</b><div class="bar"><i style="width:${Math.min(100,a/z*100)}%;background:var(--c)"></i></div><small style="color:var(--mu)">${s}</small></div>`;
  let h=`<h1>Progression</h1><p class="sub">Régularité avant perfection</p>${cal()}<div class="lbl">Générale</div>${b('Actions prévues aujourd’hui',dn,Math.max(tot,1),dn+' réalisées sur '+tot+' ('+pc+' %)')}<div class="lbl">Habitudes permanentes · période</div>`;
  h+=T.filter(x=>x.t==='habit').map(x=>b(x.n,x.wd,x.wt,x.wd+' sur '+x.wt+' cette semaine',x)).join('');
@@ -275,7 +288,11 @@ const D0=d=>{const x=new Date(d);x.setHours(0,0,0,0);return x;};
 const dd=d=>Math.round((D0(d)-D0(new Date()))/864e5);
 const same=(a,b)=>D0(a).getTime()===D0(b).getTime();
 const JL=['L','M','M','J','V','S','D'];
-function ev(d){const n=dd(d),r=[];T.forEach(x=>{const sch=x.t==='once'?(x.due||0)===n:(x.days||[1,2,3,4,5]).includes(d.getDay());if(!sch)return;let s='p';if(n===0)s=x.done?'d':'p';else if(n<0)s=Math.abs((x.id*7919+n*104729)%10)<8?'d':'m';r.push({x,s});});return r;}
+function sched(x,d){if(x.t==='once')return x.dt!=null?same(d,new Date(x.dt)):(x.due||0)===dd(d);
+ const q=x.sch;if(q&&q.m==='int'){const k=Math.round((D0(d)-q.s)/864e5);return k>=0&&k%q.n===0;}
+ return (x.days||[1,2,3,4,5]).includes(d.getDay());}
+function dueToday(x){return sched(x,new Date())||(x.t==='once'&&x.dt!=null&&x.dt<D0(new Date()).getTime()&&!x.done);}
+function ev(d){const n=dd(d),r=[];T.forEach(x=>{if(x.cd&&D0(d).getTime()<x.cd)return;if(!sched(x,d))return;let s='p';if(n===0)s=x.done?'d':'p';else if(n<0)s=x.t==='once'?'m':x.log?(x.log[dkey(d)]?'d':'m'):(Math.abs((x.id*7919+n*104729)%10)<8?'d':'m');r.push({x,s});});return r;}
 const dots=r=>r.slice(0,5).map(e=>`<i style='background:${e.s==='d'?col(e.x):'transparent'};border:1.5px solid ${col(e.x)};opacity:${e.s==='m'?.35:1}'></i>`).join('');
 const cell=d=>`<button class='cd ${dd(d)===0?'td':''} ${same(d,cs)?'sl':''}' data-d='${D0(d).getTime()}'><span>${d.getDate()}</span><div class='dots'>${dots(ev(d))}</div></button>`;
 function mon(){const y=cr.getFullYear(),m=cr.getMonth(),f=(new Date(y,m,1).getDay()+6)%7,n=new Date(y,m+1,0).getDate();let h=`<div class='cg'>${JL.map(l=>`<div class='wl'>${l}</div>`).join('')}`;for(let i=0;i<f;i++)h+='<div></div>';for(let i=1;i<=n;i++)h+=cell(new Date(y,m,i));return h+'</div>';}
@@ -303,9 +320,9 @@ function calH(){document.querySelectorAll('[data-cv]').forEach(b=>b.onclick=()=>
  document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{const k=+b.dataset.nav;cr=new Date(cr);if(cv==='week')cr.setDate(cr.getDate()+7*k);else if(cv==='month')cr.setMonth(cr.getMonth()+k,1);else cr.setFullYear(cr.getFullYear()+k);render();});
  document.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{cs=new Date(+b.dataset.d);render();});
  document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{cr=new Date(cr.getFullYear(),+b.dataset.m,1);cv='month';render();});}
-function render(){try{localStorage.setItem('cap-state-v1',JSON.stringify({T,H}));}catch(e){} $('#main').innerHTML={today,soon,tasks,prog}[tab]();$('#fab').style.display=tab==='tasks'?'block':'none';
+function render(){try{localStorage.setItem('cap-state-v1',JSON.stringify({T,H,day:dkey(new Date()),wk:wkey(new Date())}));}catch(e){} $('#main').innerHTML={today,soon,tasks,prog}[tab]();$('#fab').style.display=tab==='tasks'?'block':'none';
  document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>{const x=T.find(y=>y.id==b.dataset.id);if(x)toggle(x);});
- bindTaskActions();calH();document.querySelectorAll('[data-sv]').forEach(b=>b.onclick=()=>{sv=+b.dataset.sv;render();});document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{ss=new Date(+b.dataset.s);render();});
+ bindTaskActions();bindBackup();calH();document.querySelectorAll('[data-sv]').forEach(b=>b.onclick=()=>{sv=+b.dataset.sv;render();});document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{ss=new Date(+b.dataset.s);render();});
  document.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{zm=Math.min(1.8,Math.max(.4,zm+.15*+b.dataset.z));render();});
  const w=document.querySelector('.ttw');if(w){let pd=0,pz=1;const ti=document.querySelector('.th.td');if(ti){const a=ti.getBoundingClientRect(),b=w.getBoundingClientRect();w.scrollLeft+=a.left-b.left-(w.clientWidth-a.width)/2;}const dist=e=>Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
   w.addEventListener('touchstart',e=>{if(e.touches.length===2){pd=dist(e);pz=zm;}},{passive:true});
@@ -451,7 +468,16 @@ $('#fk').onclick=e=>{const b=e.target.closest('button');if(b){fk=b.dataset.v;pk(
 function openS(x){loadGeoForm(x);ed=x;$('#fn').value=x?x.n:'';fth=x?x.th||'sport':'sport';fk=x?x.k||'':'';fp=x?String(x.p):'2';
  $('#fp').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===fp));
  $('#ft').style.display=$('#fx').style.display=x?'none':'';$('#fh').textContent=x?'Personnaliser la tâche':'Nouvelle tâche';$('#fgo').textContent=x?'Enregistrer':'Créer';pk();$('#sheet').classList.add('on');}
-function fx(){$('#fx').innerHTML=ft==='habit'?'<input type="number" id="a" min="1" max="7" value="3" placeholder="Fois par semaine">':ft==='count'?'<input type="number" id="a" min="1" value="10" placeholder="Nombre de réalisations">':'';}
+let fmode='days',fdays=[1,3,5];
+function fx(){const h=$('#fx');
+ if(ft==='once'){h.innerHTML=`<p class="cap">Date</p><input type="date" id="odate" value="${iso(new Date())}">`;return;}
+ if(ft==='habit'){h.innerHTML='<input type="number" id="a" min="1" max="7" value="3" placeholder="Fois par semaine">';return;}
+ h.innerHTML=`<input type="number" id="a" min="1" value="10" placeholder="Nombre de réalisations"><p class="cap">Quand ?</p><div class="seg" id="fm"><button data-v="days">Jours choisis</button><button data-v="auto">Automatique</button><button data-v="int">Intervalle</button></div><div id="fmx"></div>`;
+ $('#fm').onclick=e=>{const b=e.target.closest('button');if(b){fmode=b.dataset.v;fmx();}};fmx();}
+function fmx(){$('#fm').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===fmode));const h=$('#fmx');
+ if(fmode==='days'){h.innerHTML=`<div class="pick wdp" id="fdp">${['L','M','M','J','V','S','D'].map((l,i)=>`<button data-d="${(i+1)%7}" class="${fdays.includes((i+1)%7)?'on':''}">${l}</button>`).join('')}</div>`;$('#fdp').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=+b.dataset.d;fdays=fdays.includes(d)?fdays.filter(y=>y!==d):fdays.concat(d);fmx();};}
+ else if(fmode==='auto')h.innerHTML='<input type="number" id="fper" min="1" max="7" value="3" placeholder="Fois par semaine"><p class="cap">Les séances sont réparties automatiquement sur la semaine.</p>';
+ else h.innerHTML='<input type="number" id="fint" min="1" max="30" value="2" placeholder="Tous les combien de jours ?"><p class="cap">Une séance tous les N jours, à partir d’aujourd’hui (1 = chaque jour, 2 = un jour sur deux).</p>';}
 function seg(id,cb){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;$(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));cb(b.dataset.v);};}
 seg('#ft',v=>{ft=v;fx();});seg('#fp',v=>{fp=v;pk();});fx();
 $('#fab').onclick=()=>openS(null);
@@ -459,9 +485,16 @@ $('#sheet').onclick=e=>{if(e.target.id==='sheet')e.target.classList.remove('on')
 $('#fgo').onclick=()=>{const n=$('#fn').value.trim();if(!n)return;const a=+($('#a')&&$('#a').value)||1;
  const geo=readGeoForm();if(geo===false)return;
  if(ed){ed.geo=geo;geoVisits.delete(ed.id);geoNext.delete(ed.id);ed.n=n;ed.p=+fp;ed.th=fth;ed.k=fk;$('#sheet').classList.remove('on');render();syncAutoGeo();return;}
- const x={id:id++,n,t:ft,p:+fp,done:false,th:fth,k:fk,due:1,days:[1,3,5,2,4,6,0].slice(0,ft==='once'?0:Math.min(a,ft==='count'?3:7))};
- if(ft==='habit'){x.wd=0;x.wt=a;}if(ft==='count'){x.c=0;x.g=a;x.wd=0;x.wt=Math.min(a,3);}
- x.geo=geo;T.push(x);$('#sheet').classList.remove('on');render();syncAutoGeo();};
+ const spread=k=>{k=Math.max(1,Math.min(7,k|0));const r=[];for(let i=0;i<k;i++)r.push((Math.floor(i*7/k)+1)%7);return r;};
+ const x={id:0,n,t:ft,p:+fp,done:false,th:fth,k:fk,cd:D0(new Date()).getTime(),log:{}};
+ if(ft==='once'){const v=$('#odate')&&$('#odate').value;x.dt=v?D0(new Date(v+'T00:00:00')).getTime():D0(new Date()).getTime();}
+ else if(ft==='habit'){x.days=spread(a);x.wd=0;x.wt=x.days.length;}
+ else{x.c=0;x.g=a;x.wd=0;
+  if(fmode==='days'){if(!fdays.length){alert('Choisis au moins un jour.');return;}x.days=fdays.slice();x.sch={m:'days'};x.wt=x.days.length;}
+  else if(fmode==='auto'){const k=+($('#fper')&&$('#fper').value)||3;x.days=spread(k);x.sch={m:'auto',k:Math.max(1,Math.min(7,k|0))};x.wt=x.days.length;}
+  else{const q=Math.max(1,Math.min(30,+($('#fint')&&$('#fint').value)||2));x.sch={m:'int',n:q,s:D0(new Date()).getTime()};x.days=[];x.wt=Math.ceil(7/q);}}
+ x.id=id++;
+ x.geo=geo;T.push(x);$('#sheet').classList.remove('on');fx();render();syncAutoGeo();};
 // Geolocation is requested only by the user's explicit buttons.
 let geoActive=false,geoTimer=null,geoBusy=false,geoEpoch=0,geoMessage='Suivi arrêté';
 const geoVisits=new Map();
@@ -566,5 +599,6 @@ $('#geo-radius').addEventListener('input',()=>syncGeoMap());
 
 navigate();
 syncAutoGeo();
-</script></body></html>
+</script>
 
+</body></html>
